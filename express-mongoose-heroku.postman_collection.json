@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "41414227-b427-4c77-a16f-c24721900107",
+		"name": "todolist - mongoose - heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://infinite-retreat-45318.herokuapp.com/api/users",
+					"protocol": "https",
+					"host": [
+						"infinite-retreat-45318",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://infinite-retreat-45318.herokuapp.com/api/users/626e913136674e3b1cdd7049",
+					"protocol": "https",
+					"host": [
+						"infinite-retreat-45318",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"users",
+						"626e913136674e3b1cdd7049"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://infinite-retreat-45318.herokuapp.com/api/posts",
+					"protocol": "https",
+					"host": [
+						"infinite-retreat-45318",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://infinite-retreat-45318.herokuapp.com/api/posts/6279bb397c36f9f09178add1",
+					"protocol": "https",
+					"host": [
+						"infinite-retreat-45318",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts",
+						"6279bb397c36f9f09178add1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post one or many",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": \"6274e7dc255bea01c786fc83\",\n    \"content\": \"今天雨停了\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://infinite-retreat-45318.herokuapp.com/api/posts",
+					"protocol": "https",
+					"host": [
+						"infinite-retreat-45318",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://infinite-retreat-45318.herokuapp.com/api/posts",
+					"protocol": "https",
+					"host": [
+						"infinite-retreat-45318",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://infinite-retreat-45318.herokuapp.com/api/posts/627a27f0f2f2a1c2889aebc6",
+					"protocol": "https",
+					"host": [
+						"infinite-retreat-45318",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts",
+						"627a27f0f2f2a1c2889aebc6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch by id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content\": \"今天也太熱了吧\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://infinite-retreat-45318.herokuapp.com/api/posts/627a27f0f2f2a1c2889aebc6",
+					"protocol": "https",
+					"host": [
+						"infinite-retreat-45318",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts",
+						"627a27f0f2f2a1c2889aebc6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
