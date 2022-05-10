@@ -1,4 +1,5 @@
 const Post = require('./../models/postsModel')
+const User = require('./../models/usersModel')
 const handlers = require('./../utils/handlers')
 const status = require('../utils/status')
 
@@ -8,8 +9,12 @@ const { success, error } = handlers
 // get all
 const getAll = async (req, res, next) => {
   try {
-    const { query } = req
-    const data = await Post.find(query)
+    const timesort = req.query.sort === 'hot' ? { likes: -1 } : req.query.sort === 'timeasc' ? 'createdAt' : '-createdAt'
+    const query = req.query.content ? { 'content': new RegExp(req.query.content) } : {}
+    const data = await Post.find(query).populate({
+      path: 'user',
+      select: 'name image'
+    }).sort(timesort)
     success(res, data)
   }
   catch(err) {
@@ -22,7 +27,8 @@ const getById = async (req, res, next) => {
   try {
     const { id } = req.params
     const data = await Post.findById(id)
-    success(res, [data])
+    if (data) success(res, [data])
+    else error(res, status.errorId)
   }
   catch(err) {
     error(res, status.errorId, err)
@@ -35,11 +41,11 @@ const postOneOrMany = async (req, res, next) => {
     const { body } = req
     const isArray = Array.isArray(body)
     const getContent = (item) => {
-      const { name, content } = item
-      if (!name || !content) {
+      const { user, content, image, likes } = item
+      if (!user || !content) {
         error(res, status.errorField)
       }
-      return { name, content }
+      return { user, content, image, likes }
     }
     // create data
     let data
@@ -72,7 +78,8 @@ const deleteById = async (req, res, next) => {
   try {
     const { id } = req.params
     const data = [await Post.findByIdAndDelete(id)]
-    success(res, data)
+    if (data) success(res, [data])
+    else error(res, status.errorId)
   }
   catch(err) {
     error(res, status.error, err)
@@ -84,16 +91,17 @@ const patchById = async (req, res, next) => {
   try {
     const { body } = req
     const { id } = req.params
-    const { name, content } = body
+    const { user, content } = body
     const patches = {}
-    if (!name && !content) {
+    if (!user && !content) {
       error(res, status.errorField)
     }
-    if (name) patches.name = name
+    if (user) patches.user = user
     if (content) patches.content = content
     await Post.findByIdAndUpdate(id, patches)
     const data = await Post.findById(id)
-    success(res, data)
+    if (data) success(res, [data])
+    else error(res, status.errorId)
   }
   catch(err) {
     error(res, status.error, err)

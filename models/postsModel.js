@@ -13,17 +13,20 @@ const postSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
-    select: false
+    default: Date.now,
+    // select: false
   },
-  name: {
-    type: String,
-    required: [true, 'field "name" is required']
+  user: {
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+    required: [true, 'field "user" is required']
   },
-  likes: {
-    type: Number,
-    default: 0
-  }
+  likes: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: 'User'
+    }
+  ]
 }, {
   versionKey: false
 })

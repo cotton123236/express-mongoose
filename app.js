@@ -24,7 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors())
 
 app.use('/', indexRouter)
-app.use('/users', usersRouter)
-app.use('/posts', postsRouter)
+app.use('/api/users', usersRouter)
+app.use('/api/posts', postsRouter)
+app.use((req, res, next) => res.status(404).send('<h1>404 查無此頁面</h1>'))
 
 module.exports = app
